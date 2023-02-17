@@ -9,24 +9,23 @@ function start() {
     if ( n < 1 || n > 20 ) return;
     let strHtml = "";
     for (let i=1; i<=n; i++) {
-        strHtml += `<div class="item">
-                        ${i}
+        strHtml += `<div class="item" id="item${i}">
+                        *
                     </div>`;
     }
     cont.innerHTML = strHtml;
-
-    let arr = document.querySelectorAll('.item');
-    for (let i=0; i<n; i++) {
+    let arr = [];
+    for (let i=1; i<=n; i++) {
+        arr[i] = document.querySelector(`#item${i}`);
         arr[i].addEventListener('click', change);
-        arr[i].style.color = "greenyellow";
     }
 }
 
 function change(ev) {
-    if (ev.target.style.color === "greenyellow" ) {
-        ev.target.style.color = "black"; 
+    if (ev.target.innerHTML.trim() === "*") {
+        ev.target.innerHTML = ev.target.id.slice(4);   
     }  else {
-        ev.target.style.color = "greenyellow"; 
+         ev.target.innerHTML = "*";  
     }
 }
 
